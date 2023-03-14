@@ -19,7 +19,7 @@ namespace Matrix3
             this.kvapkaList = new List<Kvapka>();
 
             Random rand = new Random();
-            this.dlzkaLinie = 10;
+            this.dlzkaLinie = rand.Next(10, 25);
             this.jeViditelna = jeVid;
         }
 

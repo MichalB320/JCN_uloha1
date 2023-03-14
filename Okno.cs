@@ -15,10 +15,12 @@ namespace Matrix3
 
         private int curRow;
         private int curColl;
-        private bool jePrvy;
+        private bool[] jePrvy;
 
         public Okno() 
         {
+            this.jePrvy = new bool[sirka];
+
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.Green;
             this.stlpce = new Linia[sirka];
@@ -35,6 +37,8 @@ namespace Matrix3
                     jeViditelna = false;
                 Linia line = new Linia(2, jeViditelna);
                 this.stlpce[i] = line;
+
+                this.jePrvy[i] = true;
             }
         }
 
@@ -43,7 +47,7 @@ namespace Matrix3
             Random rand = new Random();
             this.curColl = 0;
             this.curRow = 0;
-            this.jePrvy = true;
+
             while (true)
             {
                 this.Zapis();
@@ -61,7 +65,7 @@ namespace Matrix3
             {
                 this.stlpce[this.curColl].PridajKvapku();
                 nastavKurzor(this.curRow, this.curColl);
-                Console.Write(this.stlpce[this.curColl].DajKvapku(this.curRow, this.jePrvy).Drop);
+                Console.Write(this.stlpce[this.curColl].DajKvapku(this.curRow, this.jePrvy[this.curColl]).Drop);
             }
             else
             {
@@ -82,7 +86,7 @@ namespace Matrix3
                 this.stlpce[this.curColl].ZursKvapku();
                 nastavKurzor(curRow - (this.stlpce[this.curColl].DlzkaLinie - 1), this.curColl);
                 Console.Write(" ");
-                this.jePrvy = false;
+                this.jePrvy[this.curColl] = false;
             }
         }
 
@@ -108,12 +112,12 @@ namespace Matrix3
 
                 this.curRow = 0;
                 this.curColl = -1;
-                this.jePrvy = true;
 
                 bool jeViditelna = false;
 
                 for (int i = 0; i < sirka; i++)
                 {
+                    this.jePrvy[i] = true;
                     int nahoda = rand.Next(0, this.hustotaPrazdneho);
                     if (nahoda == 1)
                         jeViditelna = true;
