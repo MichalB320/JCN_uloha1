@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Okno okno = new Okno();
-            okno.chod();
+            okno.NechPrsi();
         }
     }
 }

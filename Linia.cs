@@ -12,6 +12,7 @@ namespace Matrix3
         private int dlzkaLinie { get; }
         private List<Kvapka> kvapkaList;
         private bool jeViditelna;
+        private int riadokStart { get; }
 
         public Linia(int c, bool jeVid) // 0 = chars, 1 = numbers, 2 = alfanumeric
         {
@@ -21,6 +22,7 @@ namespace Matrix3
             Random rand = new Random();
             this.dlzkaLinie = rand.Next(10, 25);
             this.jeViditelna = jeVid;
+            this.riadokStart = rand.Next(20);
         }
 
         public void PridajKvapku()
@@ -59,6 +61,11 @@ namespace Matrix3
             get { return this.dlzkaLinie;} 
         }
 
+        public int RiadokStart 
+        { 
+            get { return this.riadokStart; } 
+        }
+
         public Boolean JeViditelna() 
         {
             if (this.jeViditelna)
@@ -72,8 +79,8 @@ namespace Matrix3
             switch (c)
             {
                 case 0:
-                    char[] pole = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
-                    this.kvapky = new Kvapka[10];
+                    char[] pole = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P' };
+                    this.kvapky = new Kvapka[16];
 
                     for (int i = 0; i < pole.Length; i++)
                     {
@@ -90,8 +97,8 @@ namespace Matrix3
                     }
                     break;
                 case 2:
-                    char[] poleB = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
-                    this.kvapky = new Kvapka[20];
+                    char[] poleB = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P' };
+                    this.kvapky = new Kvapka[26];
 
                     for (int i = 0; i < this.kvapky.Length; i++)
                     {

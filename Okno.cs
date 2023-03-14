@@ -42,7 +42,7 @@ namespace Matrix3
             }
         }
 
-        public void chod()
+        public void NechPrsi()
         {
             Random rand = new Random();
             this.curColl = 0;
@@ -61,11 +61,14 @@ namespace Matrix3
 
         private void Zapis()
         {
-            if (this.stlpce[this.curColl].JeViditelna())
+            Random rand = new Random();
+            int vybrany = rand.Next(this.sirka);
+            if (this.stlpce[this.curColl].JeViditelna() && this.curRow >= this.stlpce[this.curColl].RiadokStart) //this.stlpce[this.curColl].JeViditelna()
             {
                 this.stlpce[this.curColl].PridajKvapku();
-                nastavKurzor(this.curRow, this.curColl);
-                Console.Write(this.stlpce[this.curColl].DajKvapku(this.curRow, this.jePrvy[this.curColl]).Drop);
+                int rozdiel = this.curRow - this.stlpce[this.curColl].RiadokStart;
+                nastavKurzor(rozdiel, this.curColl);
+                Console.Write(this.stlpce[this.curColl].DajKvapku(rozdiel, this.jePrvy[this.curColl]).Drop);
             }
             else
             {
