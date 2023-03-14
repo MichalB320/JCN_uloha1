@@ -8,8 +8,9 @@ namespace Matrix3
 {
     internal class Okno
     {
-        private const int vyska = 25;
-        private const int sirka = 30;
+        private int hustotaPrazdneho = 5;
+        private int vyska = Console.WindowHeight;//25;
+        private int sirka = Console.WindowWidth;//30;
         private Linia[] stlpce;
 
         public Okno() 
@@ -20,10 +21,11 @@ namespace Matrix3
             Random rand = new Random();
             
             bool jeViditelna = false;
-           
+            
+
             for (int i = 0; i < sirka; i++)
             {
-                int nahoda = rand.Next(0, 2);
+                int nahoda = rand.Next(0, this.hustotaPrazdneho);
                 if (nahoda == 1)
                     jeViditelna = true;
                 else
@@ -35,6 +37,7 @@ namespace Matrix3
 
         public void chod()
         {
+            Random rand = new Random();
             int curColl = 0;
             int curRow = 0;
             bool jePrvy = true;
@@ -60,19 +63,19 @@ namespace Matrix3
                 if (this.stlpce[curColl].VelkostLin() >= this.stlpce[curColl].DlzkaLinie)
                 {
                     this.stlpce[curColl].ZursKvapku();
-                    nastavKurzor(curRow - 4, curColl);
+                    nastavKurzor(curRow - (this.stlpce[curColl].DlzkaLinie - 1), curColl);
                     Console.Write(" ");
                     jePrvy = false;
                 }
 
-                if (curColl >= 29)
+                if (curColl >= this.sirka - 2)
                 {
                     curRow++;
                     curColl = -1;
-                    Thread.Sleep(100);
+                    Thread.Sleep(50);
                 }
 
-                if (curRow >= 24)
+                if (curRow >= this.vyska - 2)
                 {
                     Console.Clear();
                     for (int i = 0; i < this.stlpce.Length; i++)
@@ -83,13 +86,13 @@ namespace Matrix3
                     curColl = -1;
                     jePrvy = true;
 
-                    Random rand = new Random();
+                    //Random rand = new Random();
 
                     bool jeViditelna = false;
 
                     for (int i = 0; i < sirka; i++)
                     {
-                        int nahoda = rand.Next(0, 2);
+                        int nahoda = rand.Next(0, this.hustotaPrazdneho);
                         if (nahoda == 1)
                             jeViditelna = true;
                         else

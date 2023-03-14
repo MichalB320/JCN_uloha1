@@ -19,7 +19,7 @@ namespace Matrix3
             this.kvapkaList = new List<Kvapka>();
 
             Random rand = new Random();
-            this.dlzkaLinie = 5;
+            this.dlzkaLinie = 10;
             this.jeViditelna = jeVid;
         }
 
@@ -46,7 +46,7 @@ namespace Matrix3
              if (jePrvy)
                 return this.kvapkaList.ElementAt(index);  
              else
-                return this.kvapkaList.ElementAt((index - 4) % this.dlzkaLinie);
+                return this.kvapkaList.ElementAt((index - (this.dlzkaLinie - 1)) % this.dlzkaLinie);
         }
 
         public int VelkostLin()
