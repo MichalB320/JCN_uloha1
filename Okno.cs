@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace Matrix3
             this.curColl = 0;
             this.curRow = 0;
 
-            while (true)
+            while (!Console.KeyAvailable)
             {
                 this.Zapis();
                 this.CheckJeDlhy();
@@ -56,7 +57,9 @@ namespace Matrix3
                 this.Resetuj();
                 
                 curColl++;
+                Thread.Sleep(10);
             }
+            Console.ResetColor();
         }
 
         private void Zapis()
@@ -75,11 +78,6 @@ namespace Matrix3
                 nastavKurzor(this.curRow, this.curColl);
                 Console.Write(" ");
             }
-            /*
-            this.stlpce[curColl].PridajKvapku();
-            nastavKurzor(curRow, curColl);
-            Console.Write(this.stlpce[curColl].DajKvapku(curRow, jePrvy).Drop);
-            */
         }
 
         private void CheckJeDlhy()
@@ -99,7 +97,7 @@ namespace Matrix3
             {
                 this.curRow++;
                 this.curColl = -1;
-                Thread.Sleep(50);
+                //Thread.Sleep(500);
             }
         }
 
